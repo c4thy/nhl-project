@@ -467,5 +467,73 @@ public class NHLSimulator {
 	public static void main(String[] args) {
 		new NHLSimulator().simulation();
 	}
+	
+	private void testOption3() {
+		
+		//Task 1: simulate 240 games, must be a loop
+		List<Team> allTeams;
+		int host;
+		int visit;
+		
+		//Task 2: after each game, you need to report
+		reportGame(game);
+		
+		//Task 3: display overall result;
+		for (Team team: allTeams) {
+			display(team.gp, team.w, team.l, .allTeams.)
+		}
+		
+		
+		
+		
+		Game game1 = new Game(team1, team2);
+		team1.gp ++;
+		team2.gp ++;
+		team1.pt = team1.pt + game1.getHostTeamPoint();
+		team2.pt = team2.pt + game1.getVisitTeamPoint();
+		if (game1.getHostTeamPoint() == 2) {
+			team1.win = team1.win + 1;
+		} else if (game1.isOvertimeWin()) {
+			team1.otl = team1.otl + 1;
+		} else {
+			team1.l = team1.l + 1;
+		}
+		if (game1.getVisitTeamPoint() == 2) {
+			team2.win = team2.win + 1;
+		} else if (game1.isOvertimeWin()) {
+			team2.otl = team2.otl + 1;
+		} else {
+			team2.l = team2.l + 1;
+		}
+		
+		
+		Game game2 = new Game(team1, team3);
+		Game game3 = new Game(team1, team4);
+		
+		team1.gp = 3;
+		team1.win = team1.win + game1.getHostTeamPoint() 
+		
+		
+		
+		//...
+		Game game15 = new Game(team1, team16);
+		
+		Game game16 = new Game(team2, team1);
+		Game game17 = new Game(team2, team3);
+		Game game18 = new Game(team2, team4);
+		//...
+		
+		
+		
+		Game game240 = new Game(team16, team15);
+		
+		
+		
+		
+		
+		
+		
+		
+	}
 
 }

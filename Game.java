@@ -33,9 +33,8 @@ public class Game {
 		}
 		
 		//random select a goalie and output skill level ==> g
-		int g = 0;
 		Player goalieSelected =  randomSelectGoalie(team);
-		g = g + goalieSelected.getLevel();
+		int g = goalieSelected.getLevel();
 		
 		
 		//baseline skill level ==> t
@@ -157,13 +156,13 @@ public class Game {
 	
 	public int getVisitTeamPoint() {
 		if (visitTeamScore > hostTeamScore) {
-			//host team won
+			//visit team won
 			return 2;
 		} else if (isOvertimeWin) {
-			//host team lost in overtime
+			//visit team lost in overtime
 			return 1;
 		} else {
-			//host team lost in regulation
+			//visit team lost in regulation
 			return 0;
 		}
 	}
