@@ -6,11 +6,10 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class NHLSimulator {
 	private List<Team> teams = new ArrayList<Team>();
-	private List<Player> players;
+	//private List<Player> players;
 	//constructor
 
 	public NHLSimulator() {
@@ -19,9 +18,9 @@ public class NHLSimulator {
 	}
 
 	public ArrayList<Player> getTorontoPlayers() {
-		int numberPlayers = 0;
+		//int numberPlayers = 0;
 		ArrayList<Player> torontoPlayers = new ArrayList<Player>();
-		Team toronto;
+		//Team toronto;
 
 		Player brown, ennis, gauthier, hyman, johnsson, kadri, kapanen, lindholm;
 		Player marleau, marner, matthews, nylander, tavares, dermott, gardiner;
@@ -374,7 +373,7 @@ public class NHLSimulator {
 	public void userOption() {
 		Scanner reader = new Scanner(System.in);
 		int option = reader.nextInt();
-
+		reader.close();
 		if (option == 1) {
 			//getEastSeason();
 			
@@ -408,10 +407,12 @@ public class NHLSimulator {
 		boolean invalid = true;
 
 		System.out.println("Enter Team Name:");
-		String option = reader.nextLine();//William
+		
 		while(invalid) {
-
-			// if user's option is invalid, check all the teams to see if their option matches a team
+			String option = reader.nextLine();//William
+				if (option.contentEquals("")) {
+					mainMenu();
+				}
 				int i = 0;
 				while(i < teams.size()) {
 					//System.out.println("working");
@@ -425,13 +426,13 @@ public class NHLSimulator {
 					}
 					i++;
 				}
-
-			/*
-			if(invalid) {
+			if(invalid)
 				System.out.println(option + " is invalid! Please re-enter or press [Enter]");
-			}
-			*/
+				
+			
+		
 		}
+		reader.close();
 
 	}
 
@@ -457,6 +458,37 @@ public class NHLSimulator {
 	public void getScoresAndStats() {
 		System.out.println("running option 3");
 
+	}
+	
+	public void allGamesPlayed() {
+		ArrayList<Game> allGames = new ArrayList<Game>();
+		Team host;
+		Team visit;
+		int gamesCount = 0;
+		int a = 0;
+		int b = 1;
+		int hostGP = 0;
+		
+		while (gamesCount < 240) {
+			host = teams.get(a);
+			hostGP++;
+			host.setGP(hostGP);
+			
+			visit = teams.get(b);
+			
+			if (gamesCount % 15 == 0 && gamesCount != 0) {
+				a++;
+				b=0;
+			} else {
+				b++;
+			}
+			
+			if(a == b) b++; // a team cannot be both a host and a visitor
+			
+			allGames.add(new Game(host, visit));
+			gamesCount++; // counts the number of games played
+		}
+		
 	}
 
 	public void quitGame() {

@@ -34,9 +34,10 @@ public class Player {
 	public void setLevel(Integer skillLevel) {
 		this.skillLevel = skillLevel;
 	}
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
-	}
+	
+//	public static void main(String[] args) {
+//		// TODO Auto-generated method stub
+//
+//	}
 
 }

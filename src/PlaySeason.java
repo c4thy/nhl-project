@@ -1,8 +1,8 @@
 
-public class playSeason {
+public class PlaySeason {
 	Team team;
 	
-	public playSeason(Team team) {
+	public PlaySeason(Team team) {
 		// TODO Auto-generated constructor stub
 		this.team = team;
 		
