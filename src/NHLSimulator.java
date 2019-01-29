@@ -295,7 +295,7 @@ public class NHLSimulator {
 			int[] de = current.getDSkillRange();
 			int[] go = current.getGSkillRange();
 
-			if (!current.getName().equals("Toronto Maple Leafs")) {//William
+			if (!current.getName().equals("Toronto Maple Leafs")) {
 
 				int j = 0;
 				while (j < 25) {
@@ -343,9 +343,9 @@ public class NHLSimulator {
 				}
 
 			current.setPlayers(currentPlayers);
-			//William
+			
 			}
-			i++;//William
+			i++;
 		}
 		System.out.println("Finished creating teams");
 	}
@@ -359,7 +359,7 @@ public class NHLSimulator {
 
 	//prints the main menu
 	public void mainMenu() {
-		for (;;) {//William
+		for (;;) {
 			System.out.println("");
 			System.out.println("1 - Simulate NHL Season (Eastern Conference)");
 			System.out.println("2 - View Team Skill Level Profile");
@@ -367,7 +367,7 @@ public class NHLSimulator {
 			System.out.println("Select Option [1,2, or 3] (9 to Quit)");
 
 			userOption();
-		}//William
+		}
 	}
 
 	public void userOption() {
@@ -409,7 +409,7 @@ public class NHLSimulator {
 		System.out.println("Enter Team Name:");
 		
 		while(invalid) {
-			String option = reader.nextLine();//William
+			String option = reader.nextLine();
 				if (option.contentEquals("")) {
 					mainMenu();
 				}
@@ -438,19 +438,19 @@ public class NHLSimulator {
 
 	public void printTeamProfile(Team team) {
 		System.out.println(String.format("%-20s %-20s %-20s %-20s", "No",     "Name",         "Position",         "Skill Level"));
-		//william
+		
 		System.out.println(String.format("%-20s %-20s %-20s %-20s", "******", "************", "****************", "****************"));
-		//william
+		
 		
 		int count = 0;
 		for (Player player: team.getPlayers()) {
-			//william
+			
 			System.out.println(String.format("%-20s %-20s %-20s %-20s", player.number, player.getName(), player.getPosition(), player.getLevel()));
 			count++;
 			if(count>=25) {
 				break;
 			}
-		}//william
+		}
 	}
 	
 	//displays total scores and statistics report for Eastern
