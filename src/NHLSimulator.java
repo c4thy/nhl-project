@@ -352,7 +352,8 @@ public class NHLSimulator {
 
 	public void simulation() {
 		System.out.println("NHL Simulator(Version 0.1). Author: Cathy Yan");
-
+		System.out.println("Creating NHL Eastern Conference Teams & Adding Players ...");
+		addPlayersToTeam();
 		mainMenu();
 
 	}
@@ -373,15 +374,12 @@ public class NHLSimulator {
 	public void userOption() {
 		Scanner reader = new Scanner(System.in);
 		int option = reader.nextInt();
-		reader.close();
+		//reader.close();
 		if (option == 1) {
-			//getEastSeason();
-			
-
+			//getEastSeason();		
+			allGamesPlayed();
 		}
 		else if (option == 2) {
-			System.out.println("");
-			addPlayersToTeam();
 			getTeamSkillLevel();
 		}
 		else if (option == 3) {
@@ -410,6 +408,8 @@ public class NHLSimulator {
 		
 		while(invalid) {
 			String option = reader.nextLine();
+			
+		
 				if (option.contentEquals("")) {
 					mainMenu();
 				}
@@ -432,7 +432,7 @@ public class NHLSimulator {
 			
 		
 		}
-		reader.close();
+		//reader.close();
 
 	}
 
@@ -467,16 +467,20 @@ public class NHLSimulator {
 		int gamesCount = 0;
 		int a = 0;
 		int b = 1;
-		int hostGP = 0;
 		
 		while (gamesCount < 240) {
 			host = teams.get(a);
-			hostGP++;
-			host.setGP(hostGP);
-			
 			visit = teams.get(b);
 			
+			Game game = new Game(host, visit);
+			allGames.add(game);
+			System.out.println(host.getName() + " played " + visit.getName() + " => " + game.getHostTeamPoint() + ":"  + game.getVisitTeamPoint());
+			gamesCount++; // counts the number of games played
+			host.setGP(host.getGP() + 1);
+			visit.setGP(visit.getGP() + 1);
+			
 			if (gamesCount % 15 == 0 && gamesCount != 0) {
+				System.out.println("--- --- ---");
 				a++;
 				b=0;
 			} else {
@@ -485,9 +489,8 @@ public class NHLSimulator {
 			
 			if(a == b) b++; // a team cannot be both a host and a visitor
 			
-			allGames.add(new Game(host, visit));
-			gamesCount++; // counts the number of games played
 		}
+		
 		
 	}
 

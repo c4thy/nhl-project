@@ -11,7 +11,8 @@ public class Team {
 
 	public Team(String name) {
 		this.name = name;
-		
+		gp = 0;
+		number = 0;
 		//this.players = players;
 
 	}
