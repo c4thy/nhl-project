@@ -1,6 +1,6 @@
 import java.util.ArrayList;
 
-public class Team {
+public class Team implements Comparable<Team>{
 	String name;
 	int[] forwardSkill;
 	int[] defenseSkill;
@@ -114,6 +114,11 @@ public class Team {
 
 	public void setGoalsAllowed(Integer goalsAllowed) {
 		this.goalsAllowed = goalsAllowed;
+	}
+
+	@Override
+	public int compareTo(Team o) {
+		return name.compareTo(o.name);
 	}
 
 

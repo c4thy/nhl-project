@@ -6,6 +6,8 @@
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class NHLSimulator {
 	private List<Team> teams = new ArrayList<Team>();
@@ -347,12 +349,11 @@ public class NHLSimulator {
 			}
 			i++;
 		}
-		System.out.println("Finished creating teams");
 	}
 
 	public void simulation() {
 		System.out.println("NHL Simulator(Version 0.1). Author: Cathy Yan");
-		System.out.println("Creating NHL Eastern Conference Teams & Adding Players ...");
+	
 		addPlayersToTeam();
 		mainMenu();
 
@@ -399,6 +400,10 @@ public class NHLSimulator {
 
 	//prompts the player to enter the team name
 	public void getTeamSkillLevel() {
+		if (allGames.isEmpty()) {
+			System.out.println("Must run NHL Eastern Conference Simulation before accessing this option!");
+			return;
+		}
 		Scanner reader = new Scanner(System.in);
 		Team currentTeam;
 		String currentName = "";
@@ -456,8 +461,90 @@ public class NHLSimulator {
 	//displays total scores and statistics report for Eastern
 	//conference; teams in alphabetical order
 	public void getScoresAndStats() {
+		if (allGames.isEmpty()) {
+			System.out.println("Must run NHL Eastern Conference Simulation before accessing this option!");
+			return;
+		}
 		System.out.println("TOTAL SCORES AND STATISTICS REPORT");
 		System.out.println("************************************");
+		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
+				"Team Name",
+				"GP",
+				"W",
+				"L",
+				"OTL",
+				"Pts",
+				"GF",
+				"GA",
+				"Diff"));
+		
+		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
+				"*******************",
+				"*****",
+				"*****",
+				"*****",
+				"******",
+				"*****",
+				"*****",
+				"*****",
+				"******"));
+		Collections.sort(teams);
+		for (Team team : teams) {
+			int teamPoint = team.getWins() * 2 + team.getOtlosts();
+			int teamDiff = team.getGoalsFinished() - team.getGoalsAllowed();
+			/*System.out.println(team.getName() + 
+					" | GP:" + team.getGP() + 
+					" | W:" + team.getWins() + 
+					" | L:" + team.getLosts() + 
+					" | OTL:" + team.getOtlosts() +
+					" | Pts:" + teamPoint +
+					" | GF:" + team.getGoalsFinished() +
+					" | GA:" + team.getGoalsAllowed() +
+					" | Diff:" + teamDiff);
+			*/
+			System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %+2d",
+					team.getName(),
+					team.getGP(),
+					team.getWins(),
+					team.getLosts(),
+					team.getOtlosts(),
+					teamPoint,
+					team.getGoalsFinished(),
+					team.getGoalsAllowed(),
+					teamDiff));
+		}	
+		System.out.println();
+		System.out.println("Press Enter to continue...");
+		Scanner reader = new Scanner(System.in);
+		reader.nextLine();
+	}
+	
+	public void allGamesPlayed() {
+		int gamesCount = 0;
+		int a = 0;
+		int b = 1;
+		
+		while (gamesCount < 240) {
+			Team host = teams.get(a);
+			Team visit = teams.get(b);
+			
+			Game game = new Game(host, visit);
+			allGames.add(game);
+			//System.out.println(host.getName() + " played " + visit.getName() + " => " + game.getHostTeamPoint() + ":"  + game.getVisitTeamPoint());
+			gamesCount++; // counts the number of games played
+			
+			if (gamesCount % 15 == 0 && gamesCount != 0) {
+				//System.out.println("--- --- ---");
+				a++;
+				b=0;
+			} else {
+				b++;
+			}
+			
+			if(a == b) b++; // a team cannot be both a host and a visitor
+			
+		}
+		
 		for (Team team : teams) {
 			team.resetStats();
 		}
@@ -497,88 +584,30 @@ public class NHLSimulator {
 			
 			
 		}
-		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
-				"Team Name",
-				"GP",
-				"W",
-				"L",
-				"OTL",
-				"Pts",
-				"GF",
-				"GA",
-				"Diff"));
 		
-		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
-				"*******************",
-				"*****",
-				"*****",
-				"*****",
-				"******",
-				"*****",
-				"*****",
-				"*****",
-				"******"));
-		
-		for (Team team : teams) {
-			int teamPoint = team.getWins() * 2 + team.getOtlosts();
-			int teamDiff = team.getGoalsFinished() - team.getGoalsAllowed();
-			/*System.out.println(team.getName() + 
-					" | GP:" + team.getGP() + 
-					" | W:" + team.getWins() + 
-					" | L:" + team.getLosts() + 
-					" | OTL:" + team.getOtlosts() +
-					" | Pts:" + teamPoint +
-					" | GF:" + team.getGoalsFinished() +
-					" | GA:" + team.getGoalsAllowed() +
-					" | Diff:" + teamDiff);
-			*/
-			System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %+2d",
-					team.getName(),
-					team.getGP(),
-					team.getWins(),
-					team.getLosts(),
-					team.getOtlosts(),
-					teamPoint,
-					team.getGoalsFinished(),
-					team.getGoalsAllowed(),
-					teamDiff));
-		}	
+		Collections.sort(teams, new Comparator<Team>() {
+			@Override
+			public int compare(Team o1, Team o2) {
+				int p1 = o1.getWins() * 2 + o1.getOtlosts();
+				int p2 = o2.getWins() * 2 + o2.getOtlosts();
+				if (p1 != p2) return p1 - p2;
+				int diff1 = o1.getGoalsFinished() - o1.getGoalsAllowed();
+				int diff2 = o2.getGoalsFinished() - o2.getGoalsAllowed();
+				return diff1 - diff2;
+			}
+		});
+
+		System.out.println("NHL Regular Season - Eastern Conference - 2018/2019");
+		Team teamFirst = teams.get(teams.size()-1);
+		Team teamLast = teams.get(0);
+		int teamFirstPoints = teamFirst.getWins() * 2 + teamFirst.getOtlosts();;
+		int teamLastPoints = teamLast.getWins() * 2 + teamLast.getOtlosts();;
+		System.out.println(String.format("%-35s %-15s ","First Team: " + teamFirst.getName(), "Points: " + teamFirstPoints));		
+		System.out.println(String.format("%-35s %-15s ","Last  Team: " + teamLast.getName(),  "Points: " + teamLastPoints));
 		System.out.println();
-		System.out.println("Press Enter to continue...");
-		Scanner reader = new Scanner(System.in);
-		reader.nextLine();
+		System.out.println("Simulation completed!");
 	}
 	
-	public void allGamesPlayed() {
-		Team host;
-		Team visit;
-		int gamesCount = 0;
-		int a = 0;
-		int b = 1;
-		
-		while (gamesCount < 240) {
-			host = teams.get(a);
-			visit = teams.get(b);
-			
-			Game game = new Game(host, visit);
-			allGames.add(game);
-			System.out.println(host.getName() + " played " + visit.getName() + " => " + game.getHostTeamPoint() + ":"  + game.getVisitTeamPoint());
-			gamesCount++; // counts the number of games played
-			
-			if (gamesCount % 15 == 0 && gamesCount != 0) {
-				System.out.println("--- --- ---");
-				a++;
-				b=0;
-			} else {
-				b++;
-			}
-			
-			if(a == b) b++; // a team cannot be both a host and a visitor
-			
-		}
-		
-		
-	}
 
 	public void quitGame() {
 		System.out.println("Terminating simulation...");

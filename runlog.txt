@@ -1,0 +1,142 @@
+NHL Simulator(Version 0.1). Author: Cathy Yan
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+2
+Must run NHL Eastern Conference Simulation before accessing this option!
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+3
+Must run NHL Eastern Conference Simulation before accessing this option!
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+1
+NHL Regular Season - Eastern Conference - 2018/2019
+First Team: New Jersey              Points: 47      
+Last  Team: Toronto Maple Leafs     Points: 20      
+
+Simulation completed!
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+2
+Enter Team Name:
+Vancouver
+Vancouver is invalid! Please re-enter or press [Enter]
+
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+2
+Enter Team Name:
+Tampa Bay
+No                   Name                 Position             Skill Level         
+******               ************         ****************     ****************    
+96                   F96                  Forward              6                   
+99                   F99                  Forward              6                   
+23                   F23                  Forward              9                   
+12                   F12                  Forward              6                   
+47                   F47                  Forward              6                   
+6                    F6                   Forward              8                   
+29                   F29                  Forward              6                   
+23                   F23                  Forward              7                   
+91                   F91                  Forward              8                   
+85                   F85                  Forward              8                   
+65                   F65                  Forward              7                   
+10                   F10                  Forward              6                   
+40                   F40                  Forward              7                   
+12                   D12                  Defense              4                   
+26                   D26                  Defense              5                   
+60                   D60                  Defense              4                   
+93                   D93                  Defense              7                   
+9                    D9                   Defense              8                   
+58                   D58                  Defense              5                   
+64                   D64                  Defense              9                   
+13                   D13                  Defense              9                   
+98                   G98                  Goalie               7                   
+74                   G74                  Goalie               5                   
+64                   G64                  Goalie               6                   
+1                    G1                   Goalie               5                   
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+2
+Enter Team Name:
+Toronto Maple Leafs
+No                   Name                 Position             Skill Level         
+******               ************         ****************     ****************    
+28                   C. Brown             Forward              5                   
+63                   T. Ennis             Forward              4                   
+33                   F. Gauthier          Forward              5                   
+11                   Z. Hyman             Forward              7                   
+18                   A. Johnsson          Forward              7                   
+43                   N. Kadri             Forward              7                   
+24                   K. Kapanen           Forward              8                   
+26                   P. Lindholm          Forward              8                   
+12                   P. Marleau           Forward              8                   
+16                   M. Marner            Forward              9                   
+34                   A. Matthews          Forward              9                   
+29                   W. Nylander          Forward              9                   
+91                   J. Tavares           Forward              10                  
+23                   T. Dermott           Defense              8                   
+51                   J. Gardiner          Defense              4                   
+2                    R. Hainsey           Defense              5                   
+3                    J. Holl              Defense              6                   
+52                   M. Marincin          Defense              4                   
+92                   I. Ozhiganov         Defense              6                   
+44                   M. Rielly            Defense              9                   
+22                   N. Zaitsev           Defense              8                   
+31                   F. Andersen          Goalie               10                  
+30                   M. Hutchinson        Goalie               7                   
+50                   K. Kaskisuo          Goalie               5                   
+40                   G. Sparks            Goalie               6                   
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+3
+TOTAL SCORES AND STATISTICS REPORT
+************************************
+Team Name            GP    W     L     OTL    Pts   GF    GA    Diff  
+*******************  ***** ***** ***** ****** ***** ***** ***** ******
+Boston               30    14    1     15     43    43    43    +0
+Buffalo              30    14    2     14     42    42    43    -1
+Carolina             30    13    3     14     40    40    45    -5
+Columbus             30    17    1     12     46    46    39    +7
+Detroit              30    16    0     14     46    46    42    +4
+Florida              30    14    0     16     44    44    44    +0
+Montreal             30    13    2     15     41    41    46    -5
+NY Islanders         30    15    0     15     45    45    44    +1
+NY Rangers           30    16    1     13     45    45    41    +4
+New Jersey           30    18    1     11     47    47    38    +9
+Ottawa               30    17    1     12     46    46    41    +5
+Philadephia          30    15    0     15     45    45    44    +1
+Pittsburgh           30    17    2     11     45    45    40    +5
+Tampa Bay            30    16    1     13     45    45    42    +3
+Toronto Maple Leafs  30    10    20    0      20    20    50    -30
+Washington           30    15    0     15     45    45    43    +2
+
+Press Enter to continue...
+
+
+1 - Simulate NHL Season (Eastern Conference)
+2 - View Team Skill Level Profile
+3 - Display End of Regular Season Table
+Select Option [1,2, or 3] (9 to Quit)
+9
+Terminating simulation...
