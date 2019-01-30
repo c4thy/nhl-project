@@ -11,7 +11,7 @@ public class NHLSimulator {
 	private List<Team> teams = new ArrayList<Team>();
 	//private List<Player> players;
 	//constructor
-
+	ArrayList<Game> allGames = new ArrayList<Game>();
 	public NHLSimulator() {
 		teams = new ArrayList<Team>();
 
@@ -456,12 +456,100 @@ public class NHLSimulator {
 	//displays total scores and statistics report for Eastern
 	//conference; teams in alphabetical order
 	public void getScoresAndStats() {
-		System.out.println("running option 3");
+		System.out.println("TOTAL SCORES AND STATISTICS REPORT");
+		System.out.println("************************************");
+		for (Team team : teams) {
+			team.resetStats();
+		}
+		
+		for (Game game : allGames) {
+			Team host = game.getHostTeam();
+			Team visit = game.getVisitTeam();
+			int hostTeamPoint = game.getHostTeamPoint();
+			int visitTeamPoint = game.getVisitTeamPoint();
+			boolean overtimeWin = game.isOvertimeWin();
 
+			host.setGP(host.getGP() + 1);
+			visit.setGP(visit.getGP() + 1);
+
+			//Host Wins
+			if (hostTeamPoint > visitTeamPoint) {
+				host.setWins(host.getWins() + 1);
+				if (overtimeWin) { //if the host team had an overtime win
+					visit.setOtlosts(visit.getOtlosts() + 1);
+				} else {
+					visit.setLosts(visit.getLosts() + 1);
+				}
+			} else {//visit team wins
+				visit.setWins(visit.getWins() + 1);
+				if (overtimeWin) { //if the visit team had an overtime win
+					host.setOtlosts(host.getOtlosts() + 1);
+				} else {
+					host.setLosts(host.getLosts() +1 );
+				}
+			}
+			
+			host.setGoalsFinished(host.getGoalsFinished() + hostTeamPoint);
+			host.setGoalsAllowed(host.getGoalsAllowed() + visitTeamPoint);
+			
+			visit.setGoalsFinished(visit.getGoalsFinished() + visitTeamPoint);
+			visit.setGoalsAllowed(visit.getGoalsAllowed() + hostTeamPoint);
+			
+			
+		}
+		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
+				"Team Name",
+				"GP",
+				"W",
+				"L",
+				"OTL",
+				"Pts",
+				"GF",
+				"GA",
+				"Diff"));
+		
+		System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %-6s",
+				"*******************",
+				"*****",
+				"*****",
+				"*****",
+				"******",
+				"*****",
+				"*****",
+				"*****",
+				"******"));
+		
+		for (Team team : teams) {
+			int teamPoint = team.getWins() * 2 + team.getOtlosts();
+			int teamDiff = team.getGoalsFinished() - team.getGoalsAllowed();
+			/*System.out.println(team.getName() + 
+					" | GP:" + team.getGP() + 
+					" | W:" + team.getWins() + 
+					" | L:" + team.getLosts() + 
+					" | OTL:" + team.getOtlosts() +
+					" | Pts:" + teamPoint +
+					" | GF:" + team.getGoalsFinished() +
+					" | GA:" + team.getGoalsAllowed() +
+					" | Diff:" + teamDiff);
+			*/
+			System.out.println(String.format("%-20s %-5s %-5s %-5s %-6s %-5s %-5s %-5s %+2d",
+					team.getName(),
+					team.getGP(),
+					team.getWins(),
+					team.getLosts(),
+					team.getOtlosts(),
+					teamPoint,
+					team.getGoalsFinished(),
+					team.getGoalsAllowed(),
+					teamDiff));
+		}	
+		System.out.println();
+		System.out.println("Press Enter to continue...");
+		Scanner reader = new Scanner(System.in);
+		reader.nextLine();
 	}
 	
 	public void allGamesPlayed() {
-		ArrayList<Game> allGames = new ArrayList<Game>();
 		Team host;
 		Team visit;
 		int gamesCount = 0;
@@ -476,8 +564,6 @@ public class NHLSimulator {
 			allGames.add(game);
 			System.out.println(host.getName() + " played " + visit.getName() + " => " + game.getHostTeamPoint() + ":"  + game.getVisitTeamPoint());
 			gamesCount++; // counts the number of games played
-			host.setGP(host.getGP() + 1);
-			visit.setGP(visit.getGP() + 1);
 			
 			if (gamesCount % 15 == 0 && gamesCount != 0) {
 				System.out.println("--- --- ---");
